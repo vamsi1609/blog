@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %} {{publish.title}} {% endblock %} 
+
+{% block content%}
+
+<h1> {{ publish.title}} </h1>
+<small>By {{publish.author.first_name}} {{publish.author.last_name}} <br/> Published on {{publish.date  }}  <br/>
+    {% if user.is_authenticated %}  
+    <a href="{% url 'update_post' publish.pk %}">(Edit)</a> 
+    <a href="{% url 'delete_post' publish.pk %}">(delete)</a>
+    
+    {% endif %}    
+</small><br/>
+<hr>
+<br/>
+{{ publish.body|safe}}
+
+{% endblock %}
